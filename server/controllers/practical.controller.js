@@ -114,6 +114,41 @@ const checkPractical = async (req, res) => {
     }
 };
 
+// controllers/practical.controller.js
+
+export const getSingleSubmission = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const practical = await Practical.findById(id)
+      .populate('student', 'name rollNumber')
+      .populate('class', 'className');
+
+    if (!practical) {
+      return res.status(404).json({ message: 'Submission not found' });
+    }
+const fixedUrl = practical.cloudinaryFile.url
+  .replace('/raw/upload/', '/raw/upload/fl_inline/');
+
+
+res.status(200).json({
+  practicalId: practical._id,
+  studentName: practical.student.name,
+  studentRollNumber: practical.student.rollNumber,
+  className: practical.class.className,
+  subject: practical.subjectName,
+  practicalNumber: practical.practicalNumber,
+  submittedOn: practical.createdAt,
+  fileUrl: practical.cloudinaryFile.url, // return what you stored
+  submissionCount: practical.submissionCount,
+});
+
+
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 export {
     getTeacherSubmissions,
     checkPractical, // Export the new function

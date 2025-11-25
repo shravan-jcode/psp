@@ -2,7 +2,7 @@
 import express from "express";
 import { protect, restrictTo } from "../middleware/auth.middleware.js";
 import { createClass, getTeacherClasses } from "../controllers/college.controller.js";
-import { getTeacherSubmissions, checkPractical } from "../controllers/practical.controller.js";
+import { getTeacherSubmissions, checkPractical, getSingleSubmission } from "../controllers/practical.controller.js";
 
 const router = express.Router();
 
@@ -13,5 +13,8 @@ router.get("/classes", getTeacherClasses);
 
 router.get("/submissions", getTeacherSubmissions);
 router.put("/submissions/:practicalId", checkPractical);
+// routes/teacher.routes.js
+router.get('/submissions/:id', getSingleSubmission);
+
 
 export default router;

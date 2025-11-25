@@ -7,22 +7,26 @@ const storage = multer.memoryStorage();
 
 // 2. File Filter to allow only specific file types (PDF and DOCX)
 const fileFilter = (req, file, cb) => {
-    // Check if the file MIME type is PDF or Word document (docx)
-    if (file.mimetype === 'application/pdf' || 
-        file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-        cb(null, true); // Accept the file
+    const allowed = [
+      'application/pdf',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+      'application/msword' // .doc (older MS Word)
+    ];
+
+    if (allowed.includes(file.mimetype)) {
+        cb(null, true);
     } else {
-        // Reject the file and pass an error
-        cb(new Error('Invalid file type. Only PDF and DOCX files are allowed.'), false);
+        cb(new Error('Invalid file type. Only PDF and DOC/DOCX files are allowed.'), false);
     }
 };
+
 
 // 3. Initialize the Multer upload instance
 const upload = multer({
     storage: storage,
     fileFilter: fileFilter,
     limits: {
-        fileSize: 1024 * 1024 * 10 // 10 MB limit per file
+        fileSize: 1024 * 1024 * 70 // 10 MB limit per file
     }
 });
 

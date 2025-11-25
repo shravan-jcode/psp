@@ -25,7 +25,14 @@ export const createClass = async (req, res) => {
     }
 
     try {
-        const college = await College.findOne({ name: req.user.collegeName });
+        // ✅ FIX: auto-create college if not found
+        let college = await College.findOne({ name: req.user.collegeName });
+
+        if (!college) {
+            college = await College.create({
+                name: req.user.collegeName
+            });
+        }
 
         const classCode = await generateCode();
 
@@ -37,7 +44,7 @@ export const createClass = async (req, res) => {
         const newClass = await Class.create({
             className,
             classCode,
-            college,
+            college: college._id,
             subjects: structuredSubjects,
         });
 
@@ -54,6 +61,7 @@ export const createClass = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 };
+
 
 export const getTeacherClasses = async (req, res) => {
     try {

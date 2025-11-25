@@ -128,12 +128,11 @@ const uploadPractical = async (req, res) => {
         // Convert the buffer to a Data URI for upload
         const dataUri = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
 
-        const uploadResult = await cloudinary.uploader.upload(dataUri, {
-            folder: `practicals/${targetClass.classCode}/${subject.name}`,
-            resource_type: 'auto',
-            // Crucial: Use the 'fetch_format' or similar transformation 
-            // for in-browser viewing in the frontend. (Done on the frontend side)
-        });
+     const uploadResult = await cloudinary.uploader.upload(dataUri, {
+    folder: `practicals/${targetClass.classCode}/${subject.name}`,
+    resource_type: 'raw' // IMPORTANT: Change from raw to image
+});
+
 
         // 5. Save Practical Submission to DB
         const newPractical = await Practical.create({

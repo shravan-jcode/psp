@@ -27,6 +27,9 @@ export const studentApi = createApi({
         getMySubjects: builder.query({
     query: () => '/my-subjects',
 }),
+getClassById: builder.query({
+    query: (classId) => `/class/${classId}`,
+}),
 
     }),
 });
@@ -36,4 +39,5 @@ export const {
     useUploadPracticalMutation,
     useGetPracticalsQuery,
     useGetMySubjectsQuery,
+    useGetClassByIdQuery,
 } = studentApi;

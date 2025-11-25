@@ -116,7 +116,7 @@ const SignupPage = () => {
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="email">College Email</Label>
+                        <Label htmlFor="email">Email</Label>
                         <Input id="email" type="email" value={formData.email}
                             onChange={handleChange} disabled={isLoading} />
                     </div>

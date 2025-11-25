@@ -20,6 +20,7 @@ import EnrolledClass from './pages/Student/EnrolledClass';
 import PracticalSubmit from './pages/Student/PracticalSubmit';
 import ErrorPage from './pages/ErrorPage';
 import CheckPractical from './pages/Teacher/CheckPractical';
+import CheckStatus from './pages/Student/CheckStatus';
 
 // --- Public Pages ---
 
@@ -115,6 +116,11 @@ export const appRouter = createBrowserRouter([
                     //     path: 'tracking',
                     //     element: <SubmissionTracking />,
                     // },
+                    {
+                        // --- NEW ROUTE ---
+                    path: 'check-status', 
+                       element: <CheckStatus />, // <--- Added CheckStatus component
+                       },
                 ],
             },
         ],

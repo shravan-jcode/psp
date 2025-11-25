@@ -73,7 +73,7 @@ const StudentDashboard = () => {
                         <DashboardCard
                             title="Pending Practicals"
                             description="Check Status"
-                            linkTo="/student/dashboard/submissions"
+                            linkTo="/student/check-status"
                             actionText="View Submissions"
                             icon={<ListChecks className="h-6 w-6 text-amber-500" />}
                         />
