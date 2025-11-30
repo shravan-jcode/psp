@@ -42,7 +42,7 @@ const Footer = () => {
     ];
 
     return (
-        <footer className='bg-slate-700 text-white'>
+        <footer className='bg-slate-900 text-white'>
             <div className='container mx-auto px-4 sm:px-6 lg:px-8 py-12'>
                 {/* --- Top Section: Links and Brand --- */}
                 <div className='grid grid-cols-2 md:grid-cols-5 gap-8 border-b border-slate-600 pb-8'>

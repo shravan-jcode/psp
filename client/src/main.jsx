@@ -5,11 +5,14 @@ import { Provider } from 'react-redux';
 import App from './App.jsx';
 import { store } from './app/store.js'; // make sure path is correct
 import './index.css';
+import AuthLoader from "./features/auth/AuthLoader";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <AuthLoader>
+        <App />
+      </AuthLoader>
     </Provider>
   </StrictMode>
 );

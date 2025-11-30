@@ -40,6 +40,10 @@ export const teacherApi = createApi({
         body: data,
       }),
     }),
+    getApprovedSubmissions: builder.query({
+  query: () => '/approved-submissions',
+}),
+
   }),
 });
 
@@ -49,4 +53,5 @@ export const {
   useGetSubmissionsQuery,
   useGetSubmissionByIdQuery, // ✅ export this
   useCheckPracticalMutation,
+  useGetApprovedSubmissionsQuery,
 } = teacherApi;

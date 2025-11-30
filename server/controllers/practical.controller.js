@@ -148,8 +148,49 @@ res.status(200).json({
     res.status(500).json({ message: 'Server error' });
   }
 };
+export const getApprovedSubmissions = async (req, res) => {
+    const teacherId = req.user._id;
+
+    try {
+        const approvedPracticals = await Practical.find({
+            teacherAssigned: teacherId,
+            status: "Approved"
+        })
+        .populate("student", "name email rollNumber")
+        .populate("class", "className classCode");
+
+        const formattedSubmissions = approvedPracticals.map(p => ({
+            practicalId: p._id,
+            studentName: p.student.name,
+            studentRollNumber: p.student.rollNumber,
+            className: p.class.className,
+            classCode: p.class.classCode,
+            subject: p.subjectName,
+            practicalNumber: p.practicalNumber,
+            submittedOn: p.createdAt,
+            fileUrl: p.cloudinaryFile.url,
+            status: p.status,
+            submissionCount: p.submissionCount,
+        }));
+
+        res.status(200).json({
+            success: true,
+            data: formattedSubmissions,
+        });
+
+    } catch (error) {
+        console.error("Error fetching approved submissions:", error);
+        res.status(500).json({
+            success: false,
+            message: "Server error while fetching approved practicals.",
+            error: error.message,
+        });
+    }
+};
+
 
 export {
     getTeacherSubmissions,
     checkPractical, // Export the new function
+   
 };

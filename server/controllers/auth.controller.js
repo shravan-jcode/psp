@@ -115,8 +115,20 @@ const logout = (req, res) => {
     res.status(200).json({ message: 'Logged out successfully' });
 };
 
+const getMe = async (req, res) => {
+    if (!req.user) {
+        return res.status(401).json({ message: "Not authenticated" });
+    }
+
+    res.json({
+        user: req.user
+    });
+};
+
+
 export {
     signup,
     login,
-    logout
+    logout,
+    getMe
 };

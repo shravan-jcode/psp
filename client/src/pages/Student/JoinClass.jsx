@@ -1,7 +1,8 @@
 // src/pages/Student/JoinClass.jsx (Color Scheme Applied & Navigation Fixed)
 import React, { useState } from 'react';
 import { useJoinClassMutation } from '../../features/student/studentApi';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // --- Shadcn/UI Imports ---
 import { Button } from '../../components/ui/button';
@@ -10,7 +11,6 @@ import { Label } from '../../components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/card';
 
 import { Loader2, Zap, AlertTriangle, CheckCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const JoinClass = () => {
     const [classCode, setClassCode] = useState('');
@@ -43,7 +43,6 @@ const JoinClass = () => {
 
             setClassCode(''); // Clear input on success
             
-            // --- FIX APPLIED HERE ---
             // Navigate to the 'my-classes' route after successful join
             setTimeout(() => {
                 navigate('/student/my-classes');
@@ -60,37 +59,40 @@ const JoinClass = () => {
     };
 
     return (
-        <div className="container mx-auto p-4 md:p-8 flex justify-center items-center min-h-[calc(100vh-64px)] **bg-gray-50**">
-            <Card className='w-full max-w-lg shadow-2xl border-t-4 **border-blue-600**'>
+        // Background: Neutral/UI (#f3f4f6 or #f9fafb)
+        <div className="container mx-auto p-4 md:p-8 flex justify-center items-center min-h-[calc(100vh-64px)] bg-[#f3f4f6]">
+            {/* Card Background: Primary (#FFFFFF), Shadow: Neutral, Border Top: Secondary (#284B63) */}
+            <Card className='w-full max-w-lg shadow-2xl border-t-4 border-[#284B63] bg-white'>
                 <CardHeader className='text-center space-y-2'>
-                    {/* Primary Brand/Action Icon - Consistent with Blue Accent */}
-                    <Zap className='h-10 w-10 mx-auto **text-blue-600**' />
-                    <CardTitle className='text-3xl font-bold **text-slate-700**'>
+                    {/* Primary Brand/Action Icon: Secondary (#284B63) */}
+                    <Zap className='h-10 w-10 mx-auto text-[#284B63]' />
+                    {/* Card Title: Primary Text (#2B2B2B) */}
+                    <CardTitle className='text-3xl font-bold text-[#2B2B2B]'>
                         Join a New Class
                     </CardTitle>
-                    {/* Secondary Text for Description (Generic text/subtle shading) */}
-                    <CardDescription className='**text-gray-500**'>
+                    {/* Card Description: Neutral/UI Subtle Shading (#374151 or #111827 for contrast) */}
+                    <CardDescription className='text-[#374151]'>
                         Enter the unique code provided by your teacher to enroll instantly.
                     </CardDescription>
                 </CardHeader>
 
                 <CardContent>
                     
-                    {/* --- Message Box (Uses Success (Green) / Error (Red) Colors) --- */}
+                    {/* --- Message Box --- */}
                     {message && (
                         <div
                             className={`p-4 mb-6 rounded-lg font-medium text-sm transition-all duration-300 flex items-start space-x-2 ${
                                 message.type === "success"
-                                    ? "**bg-green-50 text-green-700 border border-green-200**" // Using Green for Success Status
-                                    : "**bg-red-50 text-red-700 border border-red-200**" // Using Red for Error Status
+                                    ? "bg-green-50 text-green-700 border border-green-200" // Standard Green for Success
+                                    : "bg-red-50 text-red-700 border border-red-200" // Standard Red for Error
                             }`}
                         >
                             {message.type === "success" ? (
-                                // Green Icon for Success
-                                <CheckCircle className='h-5 w-5 flex-shrink-0 mt-0.5 **text-green-500**' />
+                                // Standard Green Icon for Success
+                                <CheckCircle className='h-5 w-5 flex-shrink-0 mt-0.5 text-green-500' />
                             ) : (
-                                // Red Icon for Error
-                                <AlertTriangle className='h-5 w-5 flex-shrink-0 mt-0.5 **text-red-500**' />
+                                // Standard Red Icon for Error
+                                <AlertTriangle className='h-5 w-5 flex-shrink-0 mt-0.5 text-red-500' />
                             )}
                             <p>{message.text}</p>
                         </div>
@@ -98,32 +100,32 @@ const JoinClass = () => {
 
                     <form onSubmit={onSubmit} className="space-y-6">
                         <div className="space-y-2">
-                            {/* Secondary Text for Label (Generic text) */}
-                            <Label htmlFor="classCode" className='**text-gray-700**'>Class Code</Label>
+                            {/* Label: Primary Text (#2B2B2B) */}
+                            <Label htmlFor="classCode" className='text-[#2B2B2B]'>Class Code</Label>
                             <Input
                                 id="classCode"
                                 value={classCode}
                                 onChange={onChange}
                                 placeholder="E.g., B4X9YZ"
                                 disabled={isLoading}
-                                // Input border and focus ring use Gray (Border) and Blue (Accent)
-                                className="text-xl tracking-wider text-center p-6 border-2 **border-gray-300** focus-visible:ring-**blue-600**"
+                                // Input Border: Neutral/UI (#cbd5e1), Focus Ring: Secondary (#284B63)
+                                className="text-xl tracking-wider text-center p-6 border-2 border-[#cbd5e1] focus-visible:ring-[#284B63]"
                                 maxLength={8} 
                                 autoFocus
                             />
-                            {/* Secondary Text for hint (Subtle shading) */}
-                            <p className="text-xs **text-gray-500** text-right">Codes are typically 6-8 characters long and case-insensitive.</p>
+                            {/* Hint Text: Neutral/UI Subtle Shading (#374151) */}
+                            <p className="text-xs text-[#374151] text-right">Codes are typically 6-8 characters long and case-insensitive.</p>
                         </div>
 
-                        {/* Primary Action Button (Blue Secondary/Accent) */}
+                        {/* Primary Action Button: Secondary (#284B63), Hover: Accent (#3C6E71) */}
                         <Button 
                             type="submit" 
                             disabled={isLoading}
-                            className='w-full **bg-blue-600 hover:bg-blue-700** transition duration-200 text-lg'
+                            className='w-full bg-[#284B63] hover:bg-[#3C6E71] transition duration-200 text-lg text-white'
                         >
                             {isLoading ? (
                                 <>
-                                    {/* Loader Icon inherits button color, which is Blue/Accent */}
+                                    {/* Loader Icon inherits button color (Secondary/Accent) */}
                                     <Loader2 className="h-5 w-5 animate-spin mr-2" />
                                     Enrolling...
                                 </>
@@ -132,9 +134,9 @@ const JoinClass = () => {
                             )}
                         </Button>
                         
-                        <div className="pt-4 **border-t** text-center">
-                            {/* Primary Brand Color for Internal Link (Primary Text) */}
-                            <Button asChild variant="link" className='**text-slate-700 hover:text-slate-900**'>
+                        <div className="pt-4 border-t border-[#cbd5e1] text-center">
+                            {/* Internal Link: Primary Text (#2B2B2B), Hover: Secondary Dark (#111827 or similar dark text) */}
+                            <Button asChild variant="link" className='text-[#2B2B2B] hover:text-[#111827]'>
                                 <Link to="/student/dashboard">Go to Dashboard</Link>
                             </Button>
                         </div>

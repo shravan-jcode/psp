@@ -46,74 +46,87 @@ const CheckPractical = () => {
   };
 
   if (isFetching) {
-    return <div className="text-center p-10">Loading submission...</div>;
+    return (
+      <div className="text-center p-10 text-[#2B2B2B]">
+        Loading submission...
+      </div>
+    );
   }
 
   if (!data) {
-    return <div className="text-center p-10">No data found</div>;
+    return (
+      <div className="text-center p-10 text-[#2B2B2B]">
+        No data found
+      </div>
+    );
   }
 
   return (
     <div className="max-w-5xl mx-auto p-6 bg-white shadow-lg rounded-xl">
+      
+      {/* Back button */}
       <button
         onClick={() => navigate('/teacher/submissions')}
-        className="mb-4 text-blue-600"
+        className="mb-4 text-[#4c7cff] font-medium hover:underline"
       >
         ← Back
       </button>
 
+      {/* Status message */}
       {message && (
-        <div className="mb-4 p-3 bg-gray-100 rounded">{message}</div>
+        <div className="mb-4 p-3 bg-[#f3f4f6] rounded text-[#111827]">
+          {message}
+        </div>
       )}
 
-      <h2 className="text-2xl font-bold mb-4">
+      <h2 className="text-2xl font-bold mb-4 text-[#111827]">
         Check Practical Submission
       </h2>
 
-      <div className="grid grid-cols-2 gap-4 mb-4">
+      {/* Student Details */}
+      <div className="grid grid-cols-2 gap-4 mb-4 text-[#2B2B2B]">
         <p><b>Student:</b> {data.studentName} ({data.studentRollNumber})</p>
         <p><b>Class:</b> {data.className}</p>
         <p><b>Subject:</b> {data.subject}</p>
         <p><b>Practical No:</b> {data.practicalNumber}</p>
       </div>
 
-      {/* ✅ FIXED PDF PREVIEW */}
-
-<div
-  className="border rounded-lg overflow-hidden mb-6"
-  style={{ height: "500px" }}
->
-  {data?.fileUrl ? (
-    // If it's a PDF show embed; otherwise use Google Docs viewer for doc/docx fallback
-    data.fileUrl.toLowerCase().endsWith('.pdf') ? (
-      <embed
-        src={data.fileUrl}
-        type="application/pdf"
-        width="100%"
-        height="100%"
-      />
-    ) : (
-      // Google Docs viewer works for doc/docx — recommended fallback
-      <iframe
-        title="Document preview"
-        src={`https://docs.google.com/gview?url=${encodeURIComponent(data.fileUrl)}&embedded=true`}
-        width="100%"
-        height="100%"
-      />
-    )
-  ) : (
-    <div className="flex items-center justify-center h-full">
-      No file preview available
-    </div>
-  )}
-</div>
-
-
+      {/* PDF / DOCX PREVIEW */}
+      <div
+        className="border border-[#D4D4D4] rounded-lg overflow-hidden mb-6 bg-[#f9fafb]"
+        style={{ height: "500px" }}
+      >
+        {data?.fileUrl ? (
+          data.fileUrl.toLowerCase().endsWith('.pdf') ? (
+            <embed
+              src={data.fileUrl}
+              type="application/pdf"
+              width="100%"
+              height="100%"
+            />
+          ) : (
+            <iframe
+              title="Document preview"
+              src={`https://docs.google.com/gview?url=${encodeURIComponent(
+                data.fileUrl
+              )}&embedded=true`}
+              width="100%"
+              height="100%"
+            />
+          )
+        ) : (
+          <div className="flex items-center justify-center h-full text-[#374151]">
+            No file preview available
+          </div>
+        )}
+      </div>
 
       {/* Actions */}
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="flex gap-4">
-          <label>
+
+        {/* Radio */}
+        <div className="flex gap-6 text-[#2B2B2B]">
+          <label className="flex items-center gap-2">
             <input
               type="radio"
               checked={status === 'Approved'}
@@ -122,7 +135,7 @@ const CheckPractical = () => {
             Approved
           </label>
 
-          <label>
+          <label className="flex items-center gap-2">
             <input
               type="radio"
               checked={status === 'Rejected'}
@@ -132,18 +145,20 @@ const CheckPractical = () => {
           </label>
         </div>
 
+        {/* Rejection Reason */}
         {status === 'Rejected' && (
           <textarea
-            className="w-full border p-3 rounded"
+            className="w-full border border-[#D4D4D4] p-3 rounded bg-white text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#4c7cff]"
             placeholder="Enter rejection reason"
             value={rejectionReason}
             onChange={(e) => setRejectionReason(e.target.value)}
           />
         )}
 
+        {/* Submit Button */}
         <button
           disabled={isLoading}
-          className="w-full bg-blue-600 text-white p-2 rounded"
+          className="w-full p-2 rounded text-white bg-[#284B63] hover:bg-[#3C6E71] transition duration-200"
         >
           {isLoading ? 'Submitting...' : 'Submit'}
         </button>

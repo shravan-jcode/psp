@@ -64,37 +64,52 @@ const TeacherDashboard = () => {
             </h1>
 
             {/* --- 1. Key Metrics Section --- */}
-            <div className="grid gap-6 md:grid-cols-3">
-                <StatusCard
-                    title="Pending Submissions"
-                    value={pendingSubmissionsCount}
-                    icon={FileCheck}
-                    link="/teacher/submissions"
-                    linkText="Review Practicals Now"
-                    loading={submissionsLoading}
-                    error={submissionsError}
-                />
-                
-                <StatusCard
-                    title="Total Classes Taught"
-                    value={totalClasses}
-                    icon={BookOpen}
-                    link="/teacher/create-class"
-                    linkText="View All Classes"
-                    loading={classesLoading}
-                    error={classesError}
-                />
+           {/* --- 1. Key Metrics Section --- */}
+<div className="grid gap-6 md:grid-cols-4">
+    
+    <StatusCard
+        title="Pending Submissions"
+        value={pendingSubmissionsCount}
+        icon={FileCheck}
+        link="/teacher/submissions"
+        linkText="Review Practicals"
+        loading={submissionsLoading}
+        error={submissionsError}
+    />
 
-                <StatusCard
-                    title="Create New Class"
-                    value={<PlusCircle className="h-8 w-8 text-blue-600" />}
-                    icon={PlusCircle}
-                    link="/teacher/create-class"
-                    linkText="Start New Class"
-                    loading={false}
-                    error={false}
-                />
-            </div>
+    <StatusCard
+        title="Total Classes"
+        value={totalClasses}
+        icon={BookOpen}
+        link="/teacher/create-class"
+        linkText="View Classes"
+        loading={classesLoading}
+        error={classesError}
+    />
+
+    <StatusCard
+        title="Create New Class"
+        value={<PlusCircle className="h-8 w-8 text-[#4c7cff]" />}
+        icon={PlusCircle}
+        link="/teacher/create-class"
+        linkText="Start"
+        loading={false}
+        error={false}
+    />
+
+    <StatusCard
+        title="Approved Practicals"
+        value="View"
+        icon={FileCheck}
+        link="/teacher/all-practicals"
+        linkText="Open"
+        loading={false}
+        error={false}
+    />
+</div>
+
+
+            
 
             {/* --- 2. Recent Classes Section --- */}
             <div className='space-y-6'>

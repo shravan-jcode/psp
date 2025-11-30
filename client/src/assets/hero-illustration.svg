@@ -1,19 +1,28 @@
-<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="150" y="80" width="280" height="240" rx="20" fill="#FFFFFF" stroke="#E0E7FF" stroke-width="2"/>
-    <rect x="180" y="120" width="220" height="20" rx="5" fill="#BFDBFE"/>
-    <rect x="180" y="160" width="180" height="10" rx="3" fill="#DBEAFE"/>
-    <rect x="180" y="180" width="200" height="10" rx="3" fill="#DBEAFE"/>
-    <rect x="180" y="200" width="160" height="10" rx="3" fill="#DBEAFE"/>
-    <rect x="180" y="220" width="190" height="10" rx="3" fill="#DBEAFE"/>
-    <rect x="180" y="240" width="170" height="10" rx="3" fill="#DBEAFE"/>
+<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="softGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f9fafb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f3f4f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="800" height="400" fill="url(#softGradient)"/>
 
-    <path d="M400 100 L450 150 L400 200 L350 150 Z" fill="#93C5FD" opacity="0.7"/>
-    <circle cx="480" cy="180" r="30" fill="#60A5FA" opacity="0.8"/>
-    <rect x="440" y="250" width="80" height="60" rx="10" fill="#3B82F6" opacity="0.9"/>
+  <rect x="200" y="50" width="400" height="300" rx="25" fill="#FFFFFF" stroke="#D4D4D4" stroke-width="1.5" style="filter: drop-shadow(0px 8px 20px rgba(0,0,0,0.08));"/>
 
-    <path d="M360 270 L380 290 L420 250" stroke="#16A34A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-    
-    <circle cx="100" cy="150" r="20" fill="#BFDBFE" opacity="0.5"/>
-    <rect x="80" y="250" width="40" height="20" rx="5" fill="#93C5FD" opacity="0.6"/>
-    <path d="M500 50 L530 80 L500 110 L470 80 Z" fill="#60A5FA" opacity="0.4"/>
+  <rect x="200" y="50" width="400" height="60" rx="25" fill="#284B63"/>
+  <text x="230" y="90" font-family="Segoe UI, sans-serif" font-size="24" font-weight="600" fill="#FFFFFF">Submission Portal</text>
+
+  <rect x="230" y="130" width="340" height="150" rx="15" fill="#F3F4F6" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="8 8"/>
+  
+  <path d="M400 170 C380 170 365 185 365 205 C365 210 365 215 367 220 L330 220 C305 220 285 240 285 265 C285 270 285 275 287 280 L320 280 C320 280 325 280 330 280 L330 280 L400 280 M400 170 L470 170 C495 170 515 190 515 215 C515 220 515 225 513 230 L480 230" stroke="#374151" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M400 215 L400 250 M400 250 L380 235 M400 250 L420 235" stroke="#374151" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+
+  <rect x="300" y="300" width="200" height="40" rx="10" fill="#4C7CFF" style="filter: drop-shadow(0px 4px 10px rgba(76,124,255,0.3));"/>
+  <text x="400" y="327" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="16" font-weight="600" fill="#FFFFFF">Submit Practical</text>
+
+  <circle cx="100" cy="150" r="40" fill="#A6E6FF" opacity="0.4"/>
+  <circle cx="700" cy="100" r="25" fill="#A6E6FF" opacity="0.3"/>
+  <rect x="50" y="300" width="80" height="60" rx="15" fill="#3C6E71" opacity="0.2"/>
+  <path d="M720 350 Q750 300 780 350 L750 380 Z" fill="#284B63" opacity="0.15"/>
 </svg>
